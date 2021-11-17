@@ -6,10 +6,14 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/list/", listHandler)
 	http.HandleFunc("/", greet)
 	http.ListenAndServe(":8080", nil)
 }
 
 func greet(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
+}
+func listHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(404)
 }
